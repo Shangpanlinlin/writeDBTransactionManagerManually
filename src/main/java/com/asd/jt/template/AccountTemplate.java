@@ -33,7 +33,7 @@ public class AccountTemplate {
         System.out.println(accountDao.findById(3));*/
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
-        AccountService accountServiceImpl = applicationContext.getBean("accountServiceImpl", AccountServiceImpl.class);
+        AccountService accountServiceImpl = applicationContext.getBean("accountServiceImpl", AccountService.class);
         accountServiceImpl.transfer(4,5,100.00);
     }
 

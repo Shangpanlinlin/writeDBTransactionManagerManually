@@ -18,9 +18,6 @@ public class AccountServiceImpl implements AccountService{
     TransactionManager transactionManager;
 
     public void transfer(Integer id1, Integer id2, Double money) {
-
-        try{
-            transactionManager.start();   //autocommit = false
             Account account1 = accountDao.findById(id1);
             Account account2 = accountDao.findById(id2);
             account1.setMoney(account1.getMoney() - money);
@@ -28,13 +25,6 @@ public class AccountServiceImpl implements AccountService{
             accountDao.updateAccount(account1);
             int i = 1/0;
             accountDao.updateAccount(account2);
-            transactionManager.commit();  //commit
-        }catch (Exception e){
-            e.printStackTrace();
-            transactionManager.rollback();
-        }finally {
-            transactionManager.close();  // remove connection from threadlocal
-        }
 
     }
 }

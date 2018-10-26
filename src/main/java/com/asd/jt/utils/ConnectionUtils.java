@@ -17,14 +17,17 @@ public class ConnectionUtils {
   public Connection getThreadConnection(){
       Connection connection = threadLocal.get();
       if(connection == null) {
-          try {
-              Connection connection1 =  ds.getConnection();
-              threadLocal.set(connection1);
-
-          } catch (SQLException e) {
-              e.printStackTrace();
-
+          synchronized (this){
+              try {
+                  if(threadLocal.get() == null) {
+                      Connection connection1 =  ds.getConnection();
+                      threadLocal.set(connection1);
+                  }
+              } catch (SQLException e) {
+                  e.printStackTrace();
+              }
           }
+
       }
       return threadLocal.get();
   }

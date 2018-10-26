@@ -12,6 +12,7 @@ public class TransactionManager {
     private ConnectionUtils connectionUtils;
 
     public Connection getConnection(){
+        //System.out.println(Thread.currentThread().getId());
         return connectionUtils.getThreadConnection();
     }
 
@@ -25,7 +26,12 @@ public class TransactionManager {
 
     public void rollback(){
         try {
-            connectionUtils.getThreadConnection().rollback();
+
+            System.out.println( "rollback" + Thread.currentThread().getId());
+            Connection connection = connectionUtils.getThreadConnection();
+            System.out.println("rollback connection" + connection);
+            System.out.println("rollback connectionUtils" + connectionUtils);
+            connection.rollback();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,7 +39,11 @@ public class TransactionManager {
 
     public void start(){
         try {
-            connectionUtils.getThreadConnection().setAutoCommit(false);
+            System.out.println( "start" + Thread.currentThread().getId());
+            Connection connection = connectionUtils.getThreadConnection();
+            System.out.println("start connection" + connection);
+            System.out.println("start connectionUtils" + connectionUtils);
+            connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
