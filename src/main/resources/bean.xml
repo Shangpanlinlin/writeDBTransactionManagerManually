@@ -15,6 +15,13 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <context:component-scan base-package="com.asd.jt.*"></context:component-scan>
 <!--<aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="datasource"></property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 
 <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
     <property name="dataSource" ref="datasource"></property>
@@ -28,12 +35,12 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
     <property name="password" value="Panlinlin1023@"></property>
 </bean>
 
-    <!--spring 自带的事务控制-->
-    <!--事务管理类在容器里面注入-->
+  <!--  &lt;!&ndash;spring 自带的事务控制&ndash;&gt;
+    &lt;!&ndash;事务管理类在容器里面注入&ndash;&gt;
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="datasource"></property>
     </bean>
-    <!--事务配置-->
+    &lt;!&ndash;事务配置&ndash;&gt;
     <tx:advice id="txad" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="*"  read-only="false" propagation="REQUIRED"/>
@@ -41,11 +48,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
         </tx:attributes>
     </tx:advice>
 
-   <!--配置事务管理器和切点之间的关系-->
+   &lt;!&ndash;配置事务管理器和切点之间的关系&ndash;&gt;
     <aop:config>
         <aop:pointcut id="pc" expression="execution(* com.asd.jt.service.impl.*.*(..))"></aop:pointcut>
        <aop:advisor advice-ref="txad" pointcut-ref="pc"></aop:advisor>
-    </aop:config>
+    </aop:config>-->
 
     <!--<aop:config>
         <aop:pointcut id="pc" expression="execution(* com.asd.jt.service.impl.*.*(..))"></aop:pointcut>

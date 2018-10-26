@@ -5,9 +5,12 @@ import com.asd.jt.domain.Account;
 import com.asd.jt.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class AccountServiceImpl implements AccountService{
 
     @Autowired
@@ -20,6 +23,7 @@ public class AccountServiceImpl implements AccountService{
 /*    @Autowired
     TransactionManager transactionManager;*/
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void transfer(Integer id1, Integer id2, Double money) {
             Account account1 = findById(id1);
             Account account2 = findById(id2);
