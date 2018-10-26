@@ -7,6 +7,15 @@ import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+
+/*
+* 注解配置不需要修改原有的代码，直接在切面类里面配置切点和增强即可，
+* 这是一个事务管理器的切面类。
+*
+*
+* */
+/*
+
 @Component
 @Aspect //切面类
 public class TransactionManager {
@@ -58,3 +67,4 @@ public class TransactionManager {
         connectionUtils.close();
     }
 }
+*/
