@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<context:component-scan base-package="com.asd.jt.*"></context:component-scan>
+<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="datasource"></property>
+</bean>
+
+<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+    <property name="url" value="jdbc:mysql://119.29.175.117:3306/travel?autoReconnect=true"></property>
+    <!--&useSSL=false&serverTimezone=GMT-->
+    <property name="username" value="root"></property>
+    <property name="password" value="Panlinlin1023@"></property>
+</bean>
+</beans>
