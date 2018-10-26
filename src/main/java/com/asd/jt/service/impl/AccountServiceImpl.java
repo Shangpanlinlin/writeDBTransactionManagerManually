@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService{
             account1.setMoney(account1.getMoney() - money);
             account2.setMoney(account2.getMoney() + money);
             accountDao.updateAccount(account1);
-            int i = 1/0;
+            //int i = 1/0;
             accountDao.updateAccount(account2);
 
     }
